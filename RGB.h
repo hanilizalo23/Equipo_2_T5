@@ -2,7 +2,7 @@
  * RGB.h
  *
  *  Created on: 13 feb 2022
- *      Author: nelid
+ *      Author: Mauricio Peralta O.
  */
 
 #ifndef RGB_H_
