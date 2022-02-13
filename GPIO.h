@@ -12,8 +12,10 @@
 #ifndef GPIO_H_
 #define GPIO_H_
 
-
+#include <stdio.h>
 #include "stdint.h"
+#include "MK64F12.h"
+#include "bits.h"
 
 
 /** Constant that represent the clock enable for GPIO A */
