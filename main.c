@@ -8,7 +8,7 @@ int main(void) {
 	for (;;) {
 
 
-		}
+	}
 
-    return 0 ;
+	return 0 ;
 }
