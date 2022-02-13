@@ -4,8 +4,8 @@
 		This is the source file for the GPIO device driver for Kinetis K64.
 		It contains all the implementation for configuration functions and runtime functions.
 		i.e., this is the application programming interface (API) for the GPIO peripheral.
-	\author J. Luis Pizano Escalante, luispizano@iteso.mx
-	\date	18/02/2019
+	\author Nelida Paulina Hernández Moya
+	\date	13/02/2022
 	\todo
 	    Interrupts are not implemented in this API implementation.
  */
