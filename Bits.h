@@ -9,7 +9,7 @@
 #define BITS_H_
 
 
-/*! This definition is as a general definitions to bits in regiter or pins in the microcontroller.*/
+/*! This definition is as a general definitions to bits in register or pins in the microcontroller.*/
 typedef enum {bit_0,  /*!< Bit 0 */
 			  bit_1,  /*!< Bit 1 */
 			  bit_2,  /*!< Bit 2 */
