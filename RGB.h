@@ -16,3 +16,4 @@ void yellow(void);	//Clear everything and turn on yellow LED
 void white(void);	//Clear everything and turn on white LED
 
 #endif /* RGB_H_ */
+
