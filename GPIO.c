@@ -119,19 +119,19 @@ uint8_t GPIO_read_pin(gpio_port_name_t port_name, uint8_t pin)
 	switch(port_name)
 		{
 		case GPIO_A:/** GPIO A is selected*/
-			return (GPIOA->PDIR[pin] == 0x1) ? 1 : 0;
+			return (GPIOA->PDIR & 1<<pin);
 			break;
 		case GPIO_B:/** GPIO B is selected*/
-			return (GPIOB->PDIR[pin] == 1) ? 1 : 0;
+			return (GPIOB->PDIR & 1<<pin);
 			break;
 		case GPIO_C:/** GPIO C is selected*/
-			return (GPIOC->PDIR[pin] == 1) ? 1 : 0;
+			return (GPIOC->PDIR & 1<<pin);
 			break;
 		case GPIO_D:/** GPIO D is selected*/
-			return (GPIOD->PDIR[pin] == 1) ? 1 : 0;
+			return (GPIOD->PDIR & 1<<pin);
 			break;
 		case GPIO_E: /** GPIO E is selected*/
-			return (GPIOE->PDIR[pin] == 1) ? 1 : 0;
+			return (GPIOE->PDIR & 1<<pin);
 		default:/**If doesn't exist the option do nothing*/
 		break;
 		}
@@ -143,19 +143,19 @@ void GPIO_set_pin(gpio_port_name_t port_name, uint8_t pin)
 	switch(port_name)
 		{
 		case GPIO_A:/** GPIO A is selected*/
-			GPIOA->PSOR[pin] = 1;
+			GPIOA->PSOR = 1<<pin;
 			break;
 		case GPIO_B:/** GPIO B is selected*/
-			GPIOB->PSOR[pin] = 1;
+			GPIOB->PSOR = 1<<pin;
 			break;
 		case GPIO_C:/** GPIO C is selected*/
-			GPIOC->PSOR[pin] = 1;
+			GPIOC->PSOR = 1<<pin;
 			break;
 		case GPIO_D:/** GPIO D is selected*/
-			GPIOD->PSOR[pin] = 1;
+			GPIOD->PSOR = 1<<pin;
 			break;
 		case GPIO_E: /** GPIO E is selected*/
-			GPIOE->PSOR[pin] = 1;
+			GPIOE->PSOR = 1<<pin;
 		default:/**If doesn't exist the option do nothing*/
 		break;
 		}
@@ -166,19 +166,19 @@ void GPIO_clear_pin(gpio_port_name_t port_name, uint8_t pin)
 	switch(port_name)
 		{
 		case GPIO_A:/** GPIO A is selected*/
-			GPIOA->PCOR[pin] = 0b1;
+			GPIOA->PCOR = 1<<pin;
 			break;
 		case GPIO_B:/** GPIO B is selected*/
-			GPIOB->PCOR[pin] = 0b1;
+			GPIOB->PCOR = 1<<pin;
 			break;
 		case GPIO_C:/** GPIO C is selected*/
-			GPIOC->PCOR[pin] = 0b1;
+			GPIOC->PCOR = 1<<pin;
 			break;
 		case GPIO_D:/** GPIO D is selected*/
-			GPIOD->PCOR[pin] = 0b1;
+			GPIOD->PCOR = 1<<pin;
 			break;
 		case GPIO_E: /** GPIO E is selected*/
-			GPIOE->PCOR[pin] = 0b1;
+			GPIOE->PCOR = 1<<pin;
 		default:/**If doesn't exist the option do nothing*/
 		break;
 		}
@@ -189,19 +189,19 @@ void GPIO_toogle_pin(gpio_port_name_t port_name, uint8_t pin)
 	switch(port_name)
 		{
 		case GPIO_A:/** GPIO A is selected*/
-			GPIOA->PTOR[pin] = 1;
+			GPIOA->PTOR = 1<<pin;
 			break;
 		case GPIO_B:/** GPIO B is selected*/
-			GPIOB->PTOR[pin] = 1;
+			GPIOB->PTOR = 1<<pin;
 			break;
 		case GPIO_C:/** GPIO C is selected*/
-			GPIOC->PTOR[pin] = 1;
+			GPIOC->PTOR = 1<<pin;
 			break;
 		case GPIO_D:/** GPIO D is selected*/
-			GPIOD->PTOR[pin] = 1;
+			GPIOD->PTOR = 1<<pin;
 			break;
 		case GPIO_E: /** GPIO E is selected*/
-			GPIOE->PTOR[pin] = 1;
+			GPIOE->PTOR = 1<<pin;
 		default:/**If doesn't exist the option do nothing*/
 		break;
 		}
@@ -212,19 +212,19 @@ void GPIO_data_direction_port(gpio_port_name_t port_name,uint32_t direction)
 	switch(port_name)
 		{
 		case GPIO_A:/** GPIO A is selected*/
-			(direction == GPIO_OUTPUT) ? GPIOA->PDDR = 0xFFFFFFFF : GPIOA->PDDR = 0x00000000;
+			GPIOA->PDDR = direction;
 			break;
 		case GPIO_B:/** GPIO B is selected*/
-			(direction == GPIO_OUTPUT) ? GPIOB->PDDR = 0xFFFFFFFF : GPIOB->PDDR = 0x00000000;
+			GPIOB->PDDR = direction;
 			break;
 		case GPIO_C:/** GPIO C is selected*/
-			(direction == GPIO_OUTPUT) ? GPIOC->PDDR = 0xFFFFFFFF : GPIOC->PDDR = 0x00000000;
+			GPIOC->PDDR = direction;
 			break;
 		case GPIO_D:/** GPIO D is selected*/
-			(direction == GPIO_OUTPUT) ? GPIOD->PDDR = 0xFFFFFFFF : GPIOD->PDDR = 0x00000000;
+			GPIOD->PDDR = direction;
 			break;
 		case GPIO_E: /** GPIO E is selected*/
-			(direction == GPIO_OUTPUT) ? GPIOE->PDDR = 0xFFFFFFFF : GPIOE->PDDR = 0x00000000;
+			GPIOE->PDDR = direction;
 		default:/**If doesn't exist the option do nothing*/
 		break;
 		}
@@ -235,19 +235,19 @@ void GPIO_data_direction_pin(gpio_port_name_t port_name, uint8_t state, uint8_t 
 	switch(port_name)
 		{
 		case GPIO_A:/** GPIO A is selected*/
-			(state == GPIO_INPUT) ? GPIOA->PDDR[pin] = 0 : GPIOA->PDDR[pin] = 1;
+			GPIOA->PDDR |= state<<pin;
 			break;
 		case GPIO_B:/** GPIO B is selected*/
-			(state == GPIO_INPUT) ? GPIOB->PDDR[pin] = 0 : GPIOB->PDDR[pin] = 1;
+			GPIOB->PDDR |= state<<pin;
 			break;
 		case GPIO_C:/** GPIO C is selected*/
-			(state == GPIO_INPUT) ? GPIOC->PDDR[pin] = 0 : GPIOC->PDDR[pin] = 1;
+			GPIOC->PDDR |= state<<pin;
 			break;
 		case GPIO_D:/** GPIO D is selected*/
-			(state == GPIO_INPUT) ? GPIOD->PDDR[pin] = 0 : GPIOD->PDDR[pin] = 1;
+			GPIOD->PDDR |= state<<pin;
 			break;
 		case GPIO_E: /** GPIO E is selected*/
-			(state == GPIO_INPUT) ? GPIOE->PDDR[pin] = 0 : GPIOE->PDDR[pin] = 1;
+			GPIOE->PDDR |= state<<pin;
 		default:/**If doesn't exist the option do nothing*/
 		break;
 		}
