@@ -1,8 +1,9 @@
 /*
  * Delay.h
  *
- *  Created on: 11 feb. 2021
- *      Author: LUISPIZANO
+ *  Created on: 15/02/2022
+ *  	Author: PhD. José Luis Pizano Escalante
+ *      Modified by: Nelida Paulina Hernández Moya and Mauricio Peralta Osorio
  */
 
 #ifndef DELAY_H_

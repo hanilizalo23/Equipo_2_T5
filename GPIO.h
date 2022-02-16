@@ -4,11 +4,13 @@
 		This is the source file for the GPIO device driver for Kinetis K64.
 		It contains all the implementation for configuration functions and runtime functions.
 		i.e., this is the application programming interface (API) for the GPIO peripheral.
-	\author Nelida Paulina Hernández Moya
-	\date	13/02/2022
+	\author PhD. José Luis Pizano Escalante
+	\completed by Nelida Paulina Hernández Moya
+	\date	15/02/2022
 	\todo
 	    Interrupts are not implemented in this API implementation.
  */
+
 #ifndef GPIO_H_
 #define GPIO_H_
 
@@ -77,17 +79,17 @@
 /*! This definition is used to configure whether a pin is an input or an output*/
 typedef enum {GPIO_INPUT,/*!< Definition to configure a pin as input */
 			  GPIO_OUTPUT /*!< Definition to configure a pin as output */
-			 }gpio_port_direction_t;
+			 } gpio_port_direction_t;
 
 
 /*! These constants are used to select an specific port in the different API functions*/
-typedef enum{GPIO_A, /*!< Definition to select GPIO A */
-			 GPIO_B, /*!< Definition to select GPIO B */
-			 GPIO_C, /*!< Definition to select GPIO C */
-			 GPIO_D, /*!< Definition to select GPIO D */
-			 GPIO_E, /*!< Definition to select GPIO E */
-			 GPIO_F  /*!< Definition to select GPIO F */
-			} gpio_port_name_t;
+typedef enum {GPIO_A, /*!< Definition to select GPIO A */
+			  GPIO_B, /*!< Definition to select GPIO B */
+			  GPIO_C, /*!< Definition to select GPIO C */
+			  GPIO_D, /*!< Definition to select GPIO D */
+			  GPIO_E, /*!< Definition to select GPIO E */
+			  GPIO_F  /*!< Definition to select GPIO F */
+			 } gpio_port_name_t;
 
 /*! This data type is used to configure the pin control register*/
 typedef const uint32_t gpio_pin_control_register_t;

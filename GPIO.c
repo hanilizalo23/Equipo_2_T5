@@ -4,11 +4,13 @@
 		This is the source file for the GPIO device driver for Kinetis K64.
 		It contains all the implementation for configuration functions and runtime functions.
 		i.e., this is the application programming interface (API) for the GPIO peripheral.
-	\author Nelida Paulina Hernández Moya
-	\date	18/02/2019
+	\author PhD. José Luis Pizano Escalante
+	\completed by Nelida Paulina Hernández Moya
+	\date	15/02/2022
 	\todo
 	    Interrupts are not implemented in this API implementation.
  */
+
 #include <stdio.h>
 #include <stdint.h>
 #include "MK64F12.h"
@@ -43,7 +45,7 @@ uint8_t GPIO_clock_gating(gpio_port_name_t port_name)
 
 uint8_t GPIO_pin_control_register(gpio_port_name_t port_name, uint8_t pin,const gpio_pin_control_register_t*  pin_control_register)
 {
-	switch(port_name)
+	switch(port_name) /**Selecting the port and ping for the control register*/
 		{
 		case GPIO_A:/** GPIO A is selected*/
 			PORTA->PCR[pin] = *pin_control_register;
@@ -69,7 +71,7 @@ uint8_t GPIO_pin_control_register(gpio_port_name_t port_name, uint8_t pin,const 
 
 void GPIO_write_port(gpio_port_name_t port_name, uint32_t data)
 {
-	switch(port_name)
+	switch(port_name) /**Writing in the full port a value*/
 		{
 		case GPIO_A:/** GPIO A is selected*/
 			GPIOA->PDOR = data;
@@ -92,7 +94,7 @@ void GPIO_write_port(gpio_port_name_t port_name, uint32_t data)
 
 uint32_t GPIO_read_port(gpio_port_name_t port_name)
 {
-	switch(port_name)
+	switch(port_name) /**Reading and returning the value of a port*/
 		{
 		case GPIO_A:/** GPIO A is selected*/
 			return GPIOA->PDIR;
@@ -116,7 +118,7 @@ uint32_t GPIO_read_port(gpio_port_name_t port_name)
 
 uint8_t GPIO_read_pin(gpio_port_name_t port_name, uint8_t pin)
 {
-	switch(port_name)
+	switch(port_name) /**Reading and returning the value of a specific pin of the desired port*/
 		{
 		case GPIO_A:/** GPIO A is selected*/
 			return (GPIOA->PDIR & 1<<pin);
@@ -140,7 +142,7 @@ uint8_t GPIO_read_pin(gpio_port_name_t port_name, uint8_t pin)
 
 void GPIO_set_pin(gpio_port_name_t port_name, uint8_t pin)
 {
-	switch(port_name)
+	switch(port_name) /**Setting the correspondent pin of a port*/
 		{
 		case GPIO_A:/** GPIO A is selected*/
 			GPIOA->PSOR = 1<<pin;
@@ -163,7 +165,7 @@ void GPIO_set_pin(gpio_port_name_t port_name, uint8_t pin)
 
 void GPIO_clear_pin(gpio_port_name_t port_name, uint8_t pin)
 {
-	switch(port_name)
+	switch(port_name) /**Cleaning the correspondent pin of a port*/
 		{
 		case GPIO_A:/** GPIO A is selected*/
 			GPIOA->PCOR = 1<<pin;
@@ -186,7 +188,7 @@ void GPIO_clear_pin(gpio_port_name_t port_name, uint8_t pin)
 
 void GPIO_toogle_pin(gpio_port_name_t port_name, uint8_t pin)
 {
-	switch(port_name)
+	switch(port_name) /**Toggling the correspondent pin of a port*/
 		{
 		case GPIO_A:/** GPIO A is selected*/
 			GPIOA->PTOR = 1<<pin;
@@ -209,22 +211,22 @@ void GPIO_toogle_pin(gpio_port_name_t port_name, uint8_t pin)
 
 void GPIO_data_direction_port(gpio_port_name_t port_name,uint32_t direction)
 {
-	switch(port_name)
+	switch(port_name) /**Configuring the direction of a port for input or output*/
 		{
 		case GPIO_A:/** GPIO A is selected*/
-			GPIOA->PDDR = direction;
+			GPIOA->PDDR |= direction;
 			break;
 		case GPIO_B:/** GPIO B is selected*/
-			GPIOB->PDDR = direction;
+			GPIOB->PDDR |= direction;
 			break;
 		case GPIO_C:/** GPIO C is selected*/
-			GPIOC->PDDR = direction;
+			GPIOC->PDDR |= direction;
 			break;
 		case GPIO_D:/** GPIO D is selected*/
-			GPIOD->PDDR = direction;
+			GPIOD->PDDR |= direction;
 			break;
 		case GPIO_E: /** GPIO E is selected*/
-			GPIOE->PDDR = direction;
+			GPIOE->PDDR |= direction;
 		default:/**If doesn't exist the option do nothing*/
 		break;
 		}
@@ -232,7 +234,7 @@ void GPIO_data_direction_port(gpio_port_name_t port_name,uint32_t direction)
 
 void GPIO_data_direction_pin(gpio_port_name_t port_name, uint8_t state, uint8_t pin)
 {
-	switch(port_name)
+	switch(port_name) /**Configuring the pin of a port as an input or output*/
 		{
 		case GPIO_A:/** GPIO A is selected*/
 			GPIOA->PDDR |= state<<pin;
