@@ -1,15 +1,15 @@
 /*
- * bits.h
+ * Bits.h
  *
- *  Created on: 4 feb. 2021
- *      Author: LUISPIZANO
+ *  Created on: 15/02/2022
+ *      Author: PhD. José Luis Pizano Escalante
  */
 
 #ifndef BITS_H_
 #define BITS_H_
 
 
-/*! This definition is as a general definitions to bits in regiter or pins in the microcontroller.*/
+/*! This definition is as a general definitions to bits in register or pins in the microcontroller.*/
 typedef enum {bit_0,  /*!< Bit 0 */
 			  bit_1,  /*!< Bit 1 */
 			  bit_2,  /*!< Bit 2 */
@@ -45,8 +45,7 @@ typedef enum {bit_0,  /*!< Bit 0 */
 			} bit_t;
 
 
-
-typedef enum{FALSE, TRUE} boolean_t;
+typedef enum {FALSE, TRUE} boolean_t;
 /*! This definition is as a general definitions to bits turn-on or turn-off any bit*/
 typedef enum {BIT_OFF, BIT_ON} bit_on_off_t;
 

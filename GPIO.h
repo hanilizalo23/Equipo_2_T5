@@ -4,16 +4,20 @@
 		This is the source file for the GPIO device driver for Kinetis K64.
 		It contains all the implementation for configuration functions and runtime functions.
 		i.e., this is the application programming interface (API) for the GPIO peripheral.
-	\author J. Luis Pizano Escalante, luispizano@iteso.mx
-	\date	18/02/2019
+	\author PhD. José Luis Pizano Escalante
+	\completed by Nelida Paulina Hernández Moya
+	\date	15/02/2022
 	\todo
 	    Interrupts are not implemented in this API implementation.
  */
+
 #ifndef GPIO_H_
 #define GPIO_H_
 
-
+#include <stdio.h>
 #include "stdint.h"
+#include "MK64F12.h"
+#include "bits.h"
 
 
 /** Constant that represent the clock enable for GPIO A */
@@ -75,17 +79,17 @@
 /*! This definition is used to configure whether a pin is an input or an output*/
 typedef enum {GPIO_INPUT,/*!< Definition to configure a pin as input */
 			  GPIO_OUTPUT /*!< Definition to configure a pin as output */
-			 }gpio_port_direction_t;
+			 } gpio_port_direction_t;
 
 
 /*! These constants are used to select an specific port in the different API functions*/
-typedef enum{GPIO_A, /*!< Definition to select GPIO A */
-			 GPIO_B, /*!< Definition to select GPIO B */
-			 GPIO_C, /*!< Definition to select GPIO C */
-			 GPIO_D, /*!< Definition to select GPIO D */
-			 GPIO_E, /*!< Definition to select GPIO E */
-			 GPIO_F  /*!< Definition to select GPIO F */
-			} gpio_port_name_t;
+typedef enum {GPIO_A, /*!< Definition to select GPIO A */
+			  GPIO_B, /*!< Definition to select GPIO B */
+			  GPIO_C, /*!< Definition to select GPIO C */
+			  GPIO_D, /*!< Definition to select GPIO D */
+			  GPIO_E, /*!< Definition to select GPIO E */
+			  GPIO_F  /*!< Definition to select GPIO F */
+			 } gpio_port_name_t;
 
 /*! This data type is used to configure the pin control register*/
 typedef const uint32_t gpio_pin_control_register_t;
@@ -95,7 +99,6 @@ typedef const uint32_t gpio_pin_control_register_t;
 /********************************************************************************************/
 /*!
  	 \brief	 This function clears all interrupts that were sensed by the GPIO.
-
  	 \param[in]  port_name Port to clear interrupts.
  	 \return void
  	 \todo Implement a mechanism to clear interrupts by a specific pin.
@@ -110,7 +113,6 @@ void GPIO_clear_interrupt(gpio_port_name_t port_name);
 /*!
  	 \brief	 This function enables the GPIO clock by configuring the corresponding bit
  	 	 and register in the System Clock Gating Control Register.
-
  	 \param[in]  port_name Port to be configured.
  	 \return 1 if the port_name is valid else return 0
  */
@@ -140,7 +142,6 @@ uint8_t GPIO_pin_control_register(gpio_port_name_t port_name, uint8_t pin, gpio_
  	 \param[in] port_name Port to configure
  	 \param[in] direction Input value to specify the port as input or output.
  	 \return void
-
  */
 void GPIO_data_direction_port(gpio_port_name_t port_name, uint32_t direction);
 /********************************************************************************************/
@@ -161,7 +162,6 @@ void GPIO_data_direction_pin(gpio_port_name_t port_name, uint8_t state, uint8_t 
  	 \brief	 This function reads all the GPIO port.
  	 \param[in] port_name Port to be read.
  	 \return  It is the value read from a GPIO. It is a 32-bit value.
-
  */
 uint32_t GPIO_read_port(gpio_port_name_t port_name);
 /********************************************************************************************/
